@@ -20,7 +20,7 @@ def read_task():
     for task in all_task:
         t_dict["tasks"].append(
             {
-                "Description of task": task.desc,
+                str(task.id) + " " + "Description of task": task.desc,
                 "Completed": task.comp
             }
         )
@@ -39,3 +39,17 @@ def delete(id):
     db.session.delete(task)
     db.session.commit()
     return f"The task with id {id} has been removed from the todo list."
+
+@app.route('/complete/task/<int:id>')
+def status(id):
+    task = Tasks.query.get(id)
+    task.comp = True
+    db.session.commit()
+    return f"Task {id} status has been changed."
+
+@app.route('/incomplete/task/<int:id>')
+def status_incomp(id):
+    task = Tasks.query.get(id)
+    task.comp = False
+    db.session.commit()
+    return f"Task {id} status has been changed."
