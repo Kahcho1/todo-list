@@ -1,10 +1,12 @@
 from application import app, db
 from application.models import Tasks
+from flask import render_template
 
 @app.route('/')
 @app.route('/home')
 def home():
-    return 'Homepage in progress . . . . .'
+    all_task = Tasks.query.all()
+    return render_template('index.html', title="Home Page", all_tasks=all_task)
 
 @app.route('/create/<task>')
 def create_task(task):
@@ -38,18 +40,18 @@ def delete(id):
     task = Tasks.query.get(id)
     db.session.delete(task)
     db.session.commit()
-    return f"The task with id {id} has been removed from the todo list."
+    return f"Task # {id} has been removed from the todo list."
 
 @app.route('/complete/task/<int:id>')
 def status(id):
     task = Tasks.query.get(id)
     task.comp = True
     db.session.commit()
-    return f"Task {id} status has been changed."
+    return f"Task # {id} status has been changed."
 
 @app.route('/incomplete/task/<int:id>')
 def status_incomp(id):
     task = Tasks.query.get(id)
     task.comp = False
     db.session.commit()
-    return f"Task {id} status has been changed."
+    return f"Task # {id} status has been changed."
