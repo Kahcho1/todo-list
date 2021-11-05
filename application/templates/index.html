@@ -1,19 +1,28 @@
 {% extends "layout.html" %}
 
 {% block body %}
-
+    <h2>Tasks that are Incompleted</h2>
     {% for task in all_tasks %}
         <p>
+            {% if task.comp == False %}
+            <br>
             # {{ task.id }}
             <br>
             Descrition of task: {{ task.desc }}
-            <br>
-            {% if task.comp == True %}
-            Status: Completed.
-            {% else %}
-            Status: Incompleted.
             {% endif %}
         </p>
     {% endfor %}
+
+    <h2>Tasks that are Completed</h2>
+    {% for task in all_tasks %}
+    <p>
+        {% if task.comp == True %}
+        <br>
+        # {{ task.id }}
+        <br>
+        Descrition of task: {{ task.desc }}
+        {% endif %}
+    </p>
+{% endfor %}
 
 {% endblock body %}
