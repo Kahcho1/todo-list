@@ -4,6 +4,11 @@
     </head>
     <body>
         <h1>{{ title }}</h1>
+        <p>
+            <a href="{{ url_for('home') }}">Home Page</a>
+            <br>
+            <a href="{{ url_for('create_task') }}">Add Task</a>
+        </p>
         {% block body %}
         {% endblock body %}
     </body>
