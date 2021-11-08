@@ -41,7 +41,7 @@ def update_task(id):
     task = Tasks.query.get(id)
 
     if request.method == 'POST':
-        task_desc = form.desc.data
+        task.desc = desc=form.desc.data
         db.session.commit()
         return redirect(url_for('home'))
 
