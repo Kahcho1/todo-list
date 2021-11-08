@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<p> 
+    <b>Current task description:</b> {{ task.desc }}
+</p>
+
 <div class='form'>
     <form method='POST' action=''>
         {{ form.hidden_tag() }}

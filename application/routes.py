@@ -11,19 +11,21 @@ def home():
 
 @app.route('/create/task', methods=['GET', 'POST'])
 def create_task():
-    tform = TaskForm()
+    form = TaskForm()
+
     if request.method == 'POST':
-        task_new = Tasks(desc=tform.desc.data)
+        task_new = Tasks(desc=form.desc.data)
         db.session.add(task_new)
         db.session.commit()
         return redirect(url_for('home'))
 
-    return render_template("create_task_form.html", title="Adding a new task", form=tform)
+    return render_template("create_task_form.html", title="Adding a new task", form=form)
 
 @app.route('/read/allTasks')
 def read_task():
     all_task = Tasks.query.order_by(Tasks.desc.asc()).all()
     t_dict = {"tasks": []}
+
     for task in all_task:
         t_dict["tasks"].append(
             {
@@ -33,12 +35,17 @@ def read_task():
         )
     return t_dict
 
-@app.route('/update/task/<int:id>/<new_desc>')
-def update_task(id, new_desc):
+@app.route('/update/task/<int:id>', methods=['GET', 'POST'])
+def update_task(id):
+    form = TaskForm()
     task = Tasks.query.get(id)
-    task.desc = new_desc
-    db.session.commit()
-    return f"Task with id {task.id} has been updated with {new_desc}."
+
+    if request.method == 'POST':
+        task_desc = form.desc.data
+        db.session.commit()
+        return redirect(url_for('home'))
+
+    return render_template('update_task_form.html', task=task, form=form)
 
 @app.route('/delete/task/<int:id>') # delete
 def delete(id):
