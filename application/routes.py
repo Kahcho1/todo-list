@@ -52,7 +52,7 @@ def delete(id):
     task = Tasks.query.get(id)
     db.session.delete(task)
     db.session.commit()
-    return f"Task # {id} has been removed from the todo list."
+    return redirect(url_for('home'))
 
 @app.route('/complete/task/<int:id>')
 def status(id):
