@@ -10,12 +10,8 @@
             <br>
             Description of task: {{ task.desc }}
             <br>
-<<<<<<< HEAD
             <a href="{{ url_for('update_task', id=task.id) }}">Update Task</a>
             <a href="{{ url_for('delete', id=task.id) }}">Delete Task</a>
-=======
-            <a href="{{ url_for('update_task', id=task.id) }}">Update</a>
->>>>>>> f8d8065596d1a45abc104a4d188f6785e81e7fa8
             {% endif %}
         </p>
     {% endfor %}
@@ -29,11 +25,8 @@
         <br>
         Descrition of task: {{ task.desc }}
         <br>
-<<<<<<< HEAD
         <a href="{{ url_for('update_task', id=task.id) }}">Update Task</a>
         <a href="{{ url_for('delete', id=task.id) }}">Delete Task</a>
-=======
->>>>>>> f8d8065596d1a45abc104a4d188f6785e81e7fa8
         {% endif %}
     </p>
 {% endfor %}
