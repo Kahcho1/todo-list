@@ -10,7 +10,8 @@
             <br>
             Description of task: {{ task.desc }}
             <br>
-            <a href="{{ url_for('update_task', id=task.id) }}">Update Task</a>
+            <a href="{{ url_for('update_task', id=task.id) }}">Edit Task</a>&ensp;&ensp;&ensp;
+            <a href="{{ url_for('status', id=task.id) }}">Complete</a><br><br>
             <a href="{{ url_for('delete', id=task.id) }}">Delete Task</a>
             {% endif %}
         </p>
@@ -25,7 +26,8 @@
         <br>
         Descrition of task: {{ task.desc }}
         <br>
-        <a href="{{ url_for('update_task', id=task.id) }}">Update Task</a>
+        <a href="{{ url_for('update_task', id=task.id) }}">Edit Task</a> &ensp;&ensp;&ensp; <!-- &ensp; to put space between words -->
+        <a href="{{ url_for('status_incomp', id=task.id) }}">Incomplete</a><br><br>
         <a href="{{ url_for('delete', id=task.id) }}">Delete Task</a>
         {% endif %}
     </p>

@@ -59,11 +59,11 @@ def status(id):
     task = Tasks.query.get(id)
     task.comp = True
     db.session.commit()
-    return f"Task # {id} status has been changed."
+    return redirect(url_for('home'))
 
 @app.route('/incomplete/task/<int:id>')
 def status_incomp(id):
     task = Tasks.query.get(id)
     task.comp = False
     db.session.commit()
-    return f"Task # {id} status has been changed."
+    return redirect(url_for('home'))
