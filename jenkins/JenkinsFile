@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    environement{
+    environment{
         CREATE_SCHEMA = "true"
         RUN_APP = "false"
         DATABASE_URI = credentials("DATABASE_URI")
