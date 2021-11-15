@@ -26,19 +26,19 @@ class TestBase(TestCase):
 class TestViews(TestBase): # Testing successful route response
     def test_home_get(self):
         response = self.client.get(url_for('home'))
-        self.assertEqual(repsponse.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_create_get(self):
         response = self.client.get(url_for('create_task'))
-        self.assertEqual(repsponse.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_read_get(self):
         response = self.client.get(url_for('read_task'))
-        self.assertEqual(repsponse.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_update_get(self):
         response = self.client.get(url_for('update_task', id=1))
-        self.assertEqual(repsponse.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
 class TestRead(TestBase):
 
@@ -58,7 +58,7 @@ class TestCreate(TestBase):
             follow_redirects=True
             )
         self.assertIn(b"Testing create task", response.data)
-        test_create = Register.query.filter_by(desc="Testing create task").first()
+        test_create = Tasks.query.filter_by(desc="Testing create task").first()
         self.assertEqual(test_create.desc, "Testing create task")
 
 class TestUpdate(TestBase):
@@ -84,7 +84,7 @@ class TestComp(TestBase):
             url_for("status", id=1),
             follow_redirects=True
         )
-        self.assertTrue(Task.query.get(id), response.data)
+        self.assertTrue(Tasks.query.get(1), response.data)
 
 class TestIncomp(TestBase):
     def test_Incomp_task(self):
@@ -92,4 +92,4 @@ class TestIncomp(TestBase):
             url_for("status_incomp", id=1),
             follow_redirects=True
         )
-        self.assertFalse(Task.query.get(id), response.data)
+        self.assertTrue(Tasks.query.get(1), response.data)
