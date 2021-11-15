@@ -84,7 +84,7 @@ class TestComp(TestBase):
             url_for("status", id=1),
             follow_redirects=True
         )
-        self.assertTrue(Tasks.query.get(1), response.data)
+        self.assertEqual(Tasks.query.get(1).complete, True)
 
 class TestIncomp(TestBase):
     def test_Incomp_task(self):
@@ -92,4 +92,4 @@ class TestIncomp(TestBase):
             url_for("status_incomp", id=1),
             follow_redirects=True
         )
-        self.assertTrue(Tasks.query.get(1), response.data)
+        self.assertEqual(Tasks.query.get(1).completed, False)
