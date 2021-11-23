@@ -1,0 +1,7 @@
+credentials
+venv
+*.db
+__pycache__/
+.coverage
+.pytest_cache
+.gitignore
