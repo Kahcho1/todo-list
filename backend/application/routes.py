@@ -12,7 +12,7 @@ def create_task():
 
 @app.route('/read/allTasks', methods=['GET'])
 def read_tasks():
-    all_tasks = Tasks.query.order_by(Tasks.desc.asc()).all()
+    all_tasks = Tasks.query.all()
     t_dict = {"tasks": []}
 
     for task in all_tasks:
