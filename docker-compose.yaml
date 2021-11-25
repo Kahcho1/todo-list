@@ -2,7 +2,7 @@ version: "3.8"
 services:
   frontend:
     build: ./frontend
-    image: ${DOCKER_HUB_CREDS_USER}/todo-list-frontend:latest
+    image: ${DOCKER_HUB_CREDS_USR}/todo-list-frontend:latest
     container_name: todo-list-frontend
     ports:
     - target: 5000
