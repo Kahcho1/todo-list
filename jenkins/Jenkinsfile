@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Push') {
             steps {
-                sh "bash jenkins/push.sh"
+                sh "docker-compose push"
             }
         }
         stage('Deploy') {
