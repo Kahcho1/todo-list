@@ -14,11 +14,12 @@ def home():
 def create_task():
     form = TaskForm()
 
-    if request.method == 'POST':
+    if request.method == "POST":
         response = requests.post(
             f"http://todo-list-backend:5000/create/task",
-            json={"description": form.desc.data})
-        app.logger.info(f"Response: {response.text}")
+            json={"description": form.desc.data}
+            )
+        app.logger.info(f"Response: {response.data}")
         return redirect(url_for('home'))
 
     return render_template("create_task_form.html", title="Adding a new task", form=form)
@@ -26,13 +27,15 @@ def create_task():
 @app.route('/update/task/<int:id>', methods=['GET', 'POST'])
 def update_task(id):
     form = TaskForm()
-    task = requests.get(f"http://todo-list-backend:5000/read/tasks/{id}").json()
+    task = requests.get(
+        f"http://todo-list-backend:5000/read/tasks/{id}").json()
     app.logger.info(f"Tasks: {task}")
 
-    if request.method == 'POST':
+    if request.method == "POST":
         response = requests.put(
             f"http://todo-list-backend:5000/update/task/{id}",
-            json={"description": form.desc.data})
+            json={"description": form.desc.data}
+            )
         return redirect(url_for('home'))
 
     return render_template('update_task_form.html', task=task, form=form)
