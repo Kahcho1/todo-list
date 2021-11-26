@@ -2,7 +2,7 @@
 
 echo "Test Stage"
 
-pip install pytest pytest-cov
+sudo pip install pytest pytest-cov
 
 python3 -m pytest \
     --cov=application \
