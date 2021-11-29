@@ -9,7 +9,7 @@ source venv/bin/activate
 # install pytest, flask_testing and requirements for frontend and backend
 pip install pytest pytest-cov flask_testing
 pip3 install -r frontend/requirements.txt
-pip3 install -r frontend/requirements.txt
+pip3 install -r backend/requirements.txt
 
 # folder for publised test
 mkdire test_reports
