@@ -11,19 +11,23 @@ pip install pytest pytest-cov flask_testing
 pip3 install -r frontend/requirements.txt
 pip3 install -r frontend/requirements.txt
 
-# run pytest frontend
-python3 -m pytest frontend
+# folder for publised test
+mkdire test_reports
 
 # run pytest frontend
-python3 -m pytest backend
+python3 -m pytest frontend \
+    --cov=application \
+    --cov-report term-missing \
+    --cov-report xml:test_reports/frontend_coverage.xml \
+    --junitxml=test_reports/frontend_junit_report.xml
+
+# run pytest backend
+python3 -m pytest backend \
+    --cov=application \
+    --cov-report term-missing \
+    --cov-report xml:test_reports/backend_coverage.xml \
+    --junitxml=test_reports/backend_junit_report.xml
 
 # remove venv
 deactivate
 rm -rf venv
-
-# # testing
-# python3 -m pytest \
-#     --cov=application \
-#     --cov-report term-missing \
-#     --cov-report xml:coverage.xml \
-#     --junitxml=junit_report.xml
