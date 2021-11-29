@@ -43,8 +43,6 @@ class TestCreate(TestBase):
             follow_redirects=True
             )
         self.assertIn(b"Testing create task", response.data)
-        test_create = Tasks.query.filter_by(desc="Testing create task").first()
-        self.assertEqual(test_create.desc, "Testing create task")
 
 class TestUpdate(TestBase):
     def test_update_task(self):
